@@ -11,7 +11,5 @@ See Settings > Forum Settings > Spam Limit to set the number of allowable spam i
 
 To-Do:
 
-- do something when a topic or reply is unspammed ?
-
 - test on multisite ?
 
