@@ -9,7 +9,12 @@ When a user exceeds the allowable spam items, set the user's forum role to 'bloc
 See Settings > Forum Settings > Spam Limit to set the number of allowable spam items.
 
 
+Bugs:
+
+- on _edit_user_profile_update_ in bbpab-admin.php, roles are not changed on Save:  Conflict with _Forum Role_ setting ?  Should role be changed here based on spam count ?
+
+
 To-Do:
 
-- test on multisite ?
+- test on multisite
 
