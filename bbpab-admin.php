@@ -3,7 +3,6 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 
-
 function bbpab_admin_setting( $settings ) {
 
 	$settings['bbp_settings_users']['_bbp_spam_limit'] = array(

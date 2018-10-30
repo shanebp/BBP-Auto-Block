@@ -3,9 +3,9 @@
 if ( ! defined( 'ABSPATH' ) ) exit;
 
 
-function bbpab_spammed_topic( $topic_id ) {
+function bbpab_spammed_topic_or_reply( $post_id ) {
 
-	$author_id = get_post_field( 'post_author', $topic_id );
+	$author_id = get_post_field( 'post_author', $post_id );
 
 	$current_value = get_user_meta( $author_id, 'bbpress_spam_limit', true );
 
@@ -37,4 +37,5 @@ function bbpab_spammed_topic( $topic_id ) {
 	}
 
 }
-add_action( 'bbp_spammed_topic', 'bbpab_spammed_topic', 99 );
+add_action( 'bbp_spammed_topic', 'bbpab_spammed_topic_or_reply', 99 );
+add_action( 'bbp_spammed_reply', 'bbpab_spammed_topic_or_reply', 99 );

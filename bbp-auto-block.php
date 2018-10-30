@@ -15,7 +15,6 @@ GitHub Branch:     production
 
 defined( 'ABSPATH' ) or die;
 
-
 function bbpab_init() {
 
 	if ( is_admin() )

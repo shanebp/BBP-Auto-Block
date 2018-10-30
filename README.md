@@ -11,9 +11,7 @@ See Settings > Forum Settings > Spam Limit to set the number of allowable spam i
 
 To-Do:
 
-- handle Replies when marked as spam
-
-- do something when a topic or reply is unspammed
+- do something when a topic or reply is unspammed ?
 
 - test on multisite ?
 
