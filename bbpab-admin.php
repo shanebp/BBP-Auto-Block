@@ -49,6 +49,7 @@ function bbp_admin_user_spam_entries_count( $profileuser ) {
 				<td>
 
 					<input name="bbp_spam_count" id="bbp_spam_count" type="number" min="0" step="1" value="<?php echo $spam_count; ?>" class="small-text" />
+					<p class="description"><?php _e("Changing this number will not affect user's Forum Role. <br>Please use the selector above to change the user's Forum Role in this context.", "bbpress");?></p>
 
 				</td>
 			</tr>
@@ -72,11 +73,15 @@ function bbp_admin_user_spam_entries_count_update( $user_id ) {
 
 		delete_user_meta( $user_id, 'bbpress_spam_count' );
 
-
+		/*
 		$bbp_participant_role = bbp_get_participant_role();
 
-// bug ? - role is not changed
+		// bug ?
+		// role is not changed, probably due to the bbPress Forum Role select box directly above this
+		// skip for now and include note on the display
+
 		bbp_set_user_role( $user_id, $bbp_participant_role );
+		*/
 
 	}
 
@@ -84,6 +89,7 @@ function bbp_admin_user_spam_entries_count_update( $user_id ) {
 
 		update_user_meta( $user_id, 'bbpress_spam_count', $_POST['bbp_spam_count'] );
 
+		/*
 		$bbp_spam_limit = get_site_option( '_bbp_spam_limit' );
 
 		if ( $bbp_spam_limit ) {
@@ -92,11 +98,15 @@ function bbp_admin_user_spam_entries_count_update( $user_id ) {
 
 				$bbp_blocked_role = bbp_get_blocked_role();
 
-// bug ? - role is not changed
+				// bug ?
+				// role is not changed, probably due to the bbPress Forum Role select box directly above this
+				// skip for now and include note on the display
+
 				bbp_set_user_role( $user_id, $bbp_blocked_role );
 
 			}
 		}
+		*/
 
 	}
 
