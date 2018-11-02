@@ -22,3 +22,11 @@ function bbpab_init() {
 
 }
 add_action( 'init', 'bbpab_init' );
+
+
+function bbpab_activation() {
+
+	update_option( '_bbp_spam_limit', '0' );
+
+}
+register_activation_hook(__FILE__, 'bbpab_activation');

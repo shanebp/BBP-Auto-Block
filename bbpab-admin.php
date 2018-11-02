@@ -21,7 +21,7 @@ add_filter( 'bbp_admin_get_settings_fields', 'bbpab_admin_setting', 99 );
 function bbp_admin_setting_callback_spam_limit() {
 ?>
 
-	<input name="_bbp_spam_limit" id="_bbp_spam_limit" type="number" min="0" step="1" value="<?php bbp_form_option( '_bbp_spam_limit', '2' ); ?>" class="small-text"<?php bbp_maybe_admin_setting_disabled( '_bbp_spam_limit' ); ?> />
+	<input name="_bbp_spam_limit" id="_bbp_spam_limit" type="number" min="0" step="1" value="<?php bbp_form_option( '_bbp_spam_limit', '0' ); ?>" class="small-text"<?php bbp_maybe_admin_setting_disabled( '_bbp_spam_limit' ); ?> />
 	<label for="_bbp_spam_limit"><?php esc_html_e( "Entries marked as spam. When exceeded, user's forum role will be changed to 'Blocked'", 'bbpress' ); ?></label>
 
 <?php
@@ -90,7 +90,7 @@ function bbp_admin_user_spam_entries_count_update( $user_id ) {
 		update_user_meta( $user_id, 'bbpress_spam_count', $_POST['bbp_spam_count'] );
 
 		/*
-		$bbp_spam_limit = get_site_option( '_bbp_spam_limit' );
+		$bbp_spam_limit = get_option( '_bbp_spam_limit' );
 
 		if ( $bbp_spam_limit ) {
 

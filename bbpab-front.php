@@ -7,11 +7,15 @@ function bbpab_spammed_topic_or_reply( $post_id ) {
 
 	$user_id = get_post_field( 'post_author', $post_id );
 
+	$bbp_spam_limit = intval( get_option( '_bbp_spam_limit' ) );
+
 	$current_value = get_user_meta( $user_id, 'bbpress_spam_count', true );
 
 	if ( empty( $current_value ) ) {
 
-		update_user_meta( $user_id, 'bbpress_spam_count', 1 );
+		$current_value = 1;
+
+		update_user_meta( $user_id, 'bbpress_spam_count', $current_value );
 
 	}
 
@@ -21,20 +25,16 @@ function bbpab_spammed_topic_or_reply( $post_id ) {
 
 		update_user_meta( $user_id, 'bbpress_spam_count', $new_value );
 
-		$bbp_spam_limit = get_site_option( '_bbp_spam_limit' );
+	}
 
-		if ( $bbp_spam_limit ) {
+	if ( $bbp_spam_limit < $new_value || $bbp_spam_limit < $current_value ) {
 
-			if ( intval( $bbp_spam_limit ) < $new_value ) {
+		$bbp_blocked_role = bbp_get_blocked_role();
 
-				$bbp_blocked_role = bbp_get_blocked_role();
-
-				bbp_set_user_role( $user_id, $bbp_blocked_role );
-
-			}
-		}
+		bbp_set_user_role( $user_id, $bbp_blocked_role );
 
 	}
+
 
 }
 add_action( 'bbp_spammed_topic', 'bbpab_spammed_topic_or_reply', 99 );
@@ -64,17 +64,14 @@ function bbpab_unspammed_topic_or_reply( $post_id ) {
 		else
 			update_user_meta( $user_id, 'bbpress_spam_count', $new_value );
 
-		$bbp_spam_limit = get_site_option( '_bbp_spam_limit' );
+		$bbp_spam_limit = get_option( '_bbp_spam_limit' );
 
-		if ( $bbp_spam_limit ) {
+		if ( intval( $bbp_spam_limit ) >= $new_value ) {
 
-			if ( intval( $bbp_spam_limit ) >= $new_value ) {
+			$bbp_participant_role = bbp_get_participant_role();
 
-				$bbp_participant_role = bbp_get_participant_role();
+			bbp_set_user_role( $user_id, $bbp_participant_role );
 
-				bbp_set_user_role( $user_id, $bbp_participant_role );
-
-			}
 		}
 
 	}
