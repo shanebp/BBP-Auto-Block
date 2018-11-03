@@ -3,9 +3,9 @@
 /*
 Plugin Name: BBP Auto Block
 Description: Block bbPress users after 'x' number of entries are marked as spam
-Version: 0.1.0
+Version: 0.1.1
 Author: PhiloPress
-Author URI: http://philopress.com/
+Author URI: https://philopress.com/
 GitHub Plugin URI: https://github.com/shanebp/bbp-auto-block
 GitHub Branch:     production
 */

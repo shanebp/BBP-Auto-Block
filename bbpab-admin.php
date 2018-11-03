@@ -28,13 +28,21 @@ function bbp_admin_setting_callback_spam_limit() {
 }
 
 
-// add a field to user edit screen
+
+// add a field to user edit screen only if not on a network admin screen
+if ( ! is_network_admin() ) {
+	add_action( 'edit_user_profile', 'bbp_admin_user_spam_entries_count', 99 );
+	add_action( 'edit_user_profile_update', 'bbp_admin_user_spam_entries_count_update', 99 );
+}
+
+
+
 function bbp_admin_user_spam_entries_count( $profileuser ) {
 
 	if ( ! current_user_can( 'edit_user', $profileuser->ID ) )
 		return;
 
-	$spam_count = get_user_meta( $profileuser->ID, 'bbpress_spam_count', true );
+	$spam_count = get_user_option( 'bbpress_spam_count', $profileuser->ID );
 	if ( empty( $spam_count ) )
 		$spam_count = 0;
 
@@ -59,7 +67,7 @@ function bbp_admin_user_spam_entries_count( $profileuser ) {
 
 	<?php
 }
-add_action( 'edit_user_profile', 'bbp_admin_user_spam_entries_count' );
+
 
 
 // save spam count field value on user edit screen
@@ -71,7 +79,9 @@ function bbp_admin_user_spam_entries_count_update( $user_id ) {
 
 	if ( $_POST['bbp_spam_count'] == '0' || empty( $_POST['bbp_spam_count'] ) ) {
 
-		delete_user_meta( $user_id, 'bbpress_spam_count' );
+		//delete_user_meta( $user_id, 'bbpress_spam_count' );
+
+		delete_user_option( $user_id, 'bbpress_spam_count' );
 
 		/*
 		$bbp_participant_role = bbp_get_participant_role();
@@ -87,7 +97,9 @@ function bbp_admin_user_spam_entries_count_update( $user_id ) {
 
 	else {
 
-		update_user_meta( $user_id, 'bbpress_spam_count', $_POST['bbp_spam_count'] );
+		//update_user_meta( $user_id, 'bbpress_spam_count', $_POST['bbp_spam_count'] );
+
+		update_user_option( $user_id, 'bbpress_spam_count', $_POST['bbp_spam_count']  );
 
 		/*
 		$bbp_spam_limit = get_option( '_bbp_spam_limit' );
