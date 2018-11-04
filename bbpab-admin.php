@@ -83,16 +83,6 @@ function bbp_admin_user_spam_entries_count_update( $user_id ) {
 
 		delete_user_option( $user_id, 'bbpress_spam_count' );
 
-		/*
-		$bbp_participant_role = bbp_get_participant_role();
-
-		// bug ?
-		// role is not changed, probably due to the bbPress Forum Role select box directly above this
-		// skip for now and include note on the display
-
-		bbp_set_user_role( $user_id, $bbp_participant_role );
-		*/
-
 	}
 
 	else {
@@ -100,25 +90,6 @@ function bbp_admin_user_spam_entries_count_update( $user_id ) {
 		//update_user_meta( $user_id, 'bbpress_spam_count', $_POST['bbp_spam_count'] );
 
 		update_user_option( $user_id, 'bbpress_spam_count', $_POST['bbp_spam_count']  );
-
-		/*
-		$bbp_spam_limit = get_option( '_bbp_spam_limit' );
-
-		if ( $bbp_spam_limit ) {
-
-			if ( intval( $bbp_spam_limit ) < intval( $_POST['bbp_spam_count'] ) ) {
-
-				$bbp_blocked_role = bbp_get_blocked_role();
-
-				// bug ?
-				// role is not changed, probably due to the bbPress Forum Role select box directly above this
-				// skip for now and include note on the display
-
-				bbp_set_user_role( $user_id, $bbp_blocked_role );
-
-			}
-		}
-		*/
 
 	}
 
