@@ -1,14 +1,13 @@
 <?php
 
 /*
-Plugin Name: BBP Auto Block
-Description: Block bbPress users after 'x' number of entries are marked as spam
-Version: 0.1.1
-Author: PhiloPress
-Author URI: https://philopress.com/
-GitHub Plugin URI: https://github.com/shanebp/bbp-auto-block
-GitHub Branch:     production
-*/
+ * Plugin Name: bbP Auto Block Spammers
+ * Description: Block bbPress users after 'x' number of entries are marked as spam
+ * Version: 1.0
+ * Author: PhiloPress
+ * Author URI: https://www.philopress.com/
+ * License: GPLv2 or later
+ */
 
 
 defined( 'ABSPATH' ) or die;
