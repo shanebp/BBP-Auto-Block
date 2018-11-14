@@ -25,7 +25,10 @@ add_action( 'init', 'bbpab_init' );
 
 function bbpab_activation() {
 
-	update_option( '_bbp_spam_limit', '0' );
+	$no_value = get_option( '_bbp_spam_limit', 'no_value' );
+
+	if ( $no_value == 'no_value' )
+		update_option( '_bbp_spam_limit', '0' );
 
 }
 register_activation_hook(__FILE__, 'bbpab_activation');
