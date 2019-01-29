@@ -16,9 +16,8 @@ function bbpab_spammed_topic_or_reply( $post_id ) {
 		$current_value = 1;
 
 		update_user_option( $user_id, 'bbpress_spam_count', $current_value );
-	}
-
-	else {
+	
+	} else {
 
 		$new_value = intval( $current_value ) + 1;
 
@@ -51,17 +50,15 @@ function bbpab_unspammed_topic_or_reply( $post_id ) {
 
 		return;
 
-	}
-
-	else {
+	} else {
 
 		$new_value = intval( $current_value ) - 1;
 
 		if ( $new_value < 1 ) {
 
 			delete_user_option( $user_id, 'bbpress_spam_count' );
-		}
-		else {
+		
+		} else {
 
 			update_user_option( $user_id, 'bbpress_spam_count', $new_value  );
 		}

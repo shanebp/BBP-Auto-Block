@@ -39,14 +39,17 @@ if ( ! is_network_admin() ) {
 
 function bbp_admin_user_spam_entries_count( $profileuser ) {
 
-	if ( ! current_user_can( 'edit_user', $profileuser->ID ) )
+	if ( ! current_user_can( 'edit_user', $profileuser->ID ) ) {
 		return;
+	}
 
 	$spam_count = get_user_option( 'bbpress_spam_count', $profileuser->ID );
-	if ( empty( $spam_count ) )
+	if ( empty( $spam_count ) ) {
 		$spam_count = 0;
-	else
+	} else {
 		$spam_count = intval( $spam_count );
+	}
+	
 	?>
 
 	<h3><?php esc_html_e( 'Forums - Spam Count', 'bbpress' ); ?></h3>
@@ -74,16 +77,15 @@ function bbp_admin_user_spam_entries_count( $profileuser ) {
 // save spam count field value on user edit screen
 function bbp_admin_user_spam_entries_count_update( $user_id ) {
 
-	if ( !current_user_can( 'edit_user', $user_id ) )
+	if ( !current_user_can( 'edit_user', $user_id ) ) {
 		return false;
-
+	}
 
 	if ( $_POST['bbp_spam_count'] == '0' || empty( $_POST['bbp_spam_count'] ) ) {
 
 		delete_user_option( $user_id, 'bbpress_spam_count' );
 
-	}
-	else {
+	} else {
 		$spam_count = intval( $_POST['bbp_spam_count'] );
 		update_user_option( $user_id, 'bbpress_spam_count', $spam_count  );
 
