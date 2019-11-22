@@ -1,23 +1,21 @@
-name: PHP Composer
-
-on: [push]
-
+name: Deploy to WordPress.org
+on:
+  push:
+    tags:
+    - "*"
 jobs:
-  build:
-
+  tag:
+    name: New tag
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-
-    - name: Validate composer.json and composer.lock
-      run: composer validate
-
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress --no-suggest
-
-    # Add a test script to composer.json, for instance: "test": "vendor/bin/phpunit"
-    # Docs: https://getcomposer.org/doc/articles/scripts.md
-
-    # - name: Run test suite
-    #   run: composer run-script test
+    - uses: actions/checkout@master
+    - name: Build
+      run: |
+        npm install
+        npm run build
+    - name: WordPress Plugin Deploy
+      uses: 10up/action-wordpress-plugin-deploy@master
+      env:
+        SVN_PASSWORD: ${{ secrets.SVN_PASSWORD }}
+        SVN_USERNAME: ${{ secrets.SVN_USERNAME }}
+        SLUG: bbp-auto-block-spammers
