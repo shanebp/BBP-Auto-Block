@@ -1,5 +1,5 @@
 # BBP Auto Block Spammers
-## Version 1.1.0
+## Version 1.2.0
 
 This bbPress plugin allows your moderators to block spammers from using the forum. 
 

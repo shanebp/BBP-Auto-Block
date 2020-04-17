@@ -3,7 +3,7 @@
 /*
  * Plugin Name: bbP Auto Block Spammers
  * Description: Block bbPress users after 'x' number of entries are marked as spam
- * Version: 1.1
+ * Version: 1.2
  * Author: PhiloPress
  * Author URI: https://www.philopress.com/
  * License: GPLv2 or later
